@@ -2,6 +2,7 @@
 
 export(get_album_info)
 export(get_fan_collection)
+export(get_fan_wishlist)
 importFrom(httr,POST)
 importFrom(httr,content)
 importFrom(jsonlite,fromJSON)
