@@ -1,0 +1,14 @@
+Package: bandcampr
+Type: Package
+Title: Scrape data from bandcamp.com
+Version: 0.1.0
+Author: Simon J. Larsen
+Maintainer: Simon J. Larsen <simonhffh@gmail.com>
+Description: A package for scraping data from Bandcamp.com.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+URL: https://github.com/SimonLarsen/bandcampr
+BugReports: https://github.com/SimonLarsen/bandcampr/issues
+RoxygenNote: 7.0.2
+Imports: httr, jsonlite, rvest, xml2
