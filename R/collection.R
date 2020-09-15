@@ -20,7 +20,14 @@ get_fan_collection <- function(username) {
   last_token <- pagedata$collection_data$last_token
   batch_size <- pagedata$collection_data$batch_size
 
-  more_available <- pagedata$collection_data$item_count > batch_size
+  batches_done <- 1
+  pb <- txtProgressBar(
+    max=ceiling(pagedata$collection_data$item_count / batch_size),
+    initial=batches_done,
+    style=3
+  )
+
+  more_available <- !pagedata$collection_data$small_collection
   while(more_available) {
     req <- POST(
       "http://bandcamp.com/api/fancollection/1/collection_items",
@@ -32,6 +39,9 @@ get_fan_collection <- function(username) {
     collection <- c(collection, data$items)
     more_available <- data$more_available
     last_token <- data$last_token
+
+    batches_done <- batches_done + 1
+    setTxtProgressBar(pb, batches_done)
   }
 
   return(collection)
@@ -59,7 +69,14 @@ get_fan_wishlist <- function(username) {
   last_token <- pagedata$wishlist_data$last_token
   batch_size <- pagedata$wishlist_data$batch_size
 
-  more_available <- pagedata$wishlist_data$item_count > batch_size
+  batches_done <- 1
+  pb <- txtProgressBar(
+    max=ceiling(pagedata$wishlist_data$item_count / batch_size),
+    initial=batches_done,
+    style=3
+  )
+
+  more_available <- !pagedata$collection_data$small_wishlist
   while(more_available) {
     req <- POST(
       "http://bandcamp.com/api/fancollection/1/wishlist_items",
@@ -71,6 +88,9 @@ get_fan_wishlist <- function(username) {
     wishlist <- c(wishlist, data$items)
     more_available <- data$more_available
     last_token <- data$last_token
+
+    batches_done <- batches_done + 1
+    setTxtProgressBar(pb, batches_done)
   }
 
   return(wishlist)
