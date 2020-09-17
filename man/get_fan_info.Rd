@@ -6,6 +6,9 @@
 \usage{
 get_fan_info(username)
 }
+\arguments{
+\item{username}{Username of the fan account}
+}
 \description{
 Get data for a fan account
 }

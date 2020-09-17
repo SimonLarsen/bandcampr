@@ -1,11 +1,13 @@
 #' Get data for all items in fan collection
 #'
 #' @param username Username of the fan account
+#'
 #' @export
 #' @importFrom xml2 read_html
-#' @importFrom rvest "%>%" html_node html_nodes html_attr
+#' @importFrom rvest "%>%" html_node html_attr
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr POST content
+#' @importFrom utils txtProgressBar setTxtProgressBar
 get_fan_collection <- function(username) {
   html <- read_html(paste0("http://bandcamp.com/", username))
 
@@ -22,17 +24,21 @@ get_fan_collection <- function(username) {
 
   batches_done <- 1
   pb <- txtProgressBar(
-    max=ceiling(pagedata$collection_data$item_count / batch_size),
-    initial=batches_done,
-    style=3
+    max = ceiling(pagedata$collection_data$item_count / batch_size),
+    initial = batches_done,
+    style = 3
   )
 
   more_available <- !pagedata$collection_data$small_collection
-  while(more_available) {
+  while (more_available) {
     req <- POST(
       "http://bandcamp.com/api/fancollection/1/collection_items",
-      body=list(fan_id=fan_id, older_than_token=last_token, count=batch_size),
-      encode="json"
+      body = list(
+        fan_id = fan_id,
+        older_than_token = last_token,
+        count = batch_size
+      ),
+      encode = "json"
     )
 
     data <- content(req, "parsed")
@@ -52,9 +58,10 @@ get_fan_collection <- function(username) {
 #' @param username Username of the fan account
 #' @export
 #' @importFrom xml2 read_html
-#' @importFrom rvest "%>%" html_node html_nodes html_attr
+#' @importFrom rvest "%>%" html_node html_attr
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr POST content
+#' @importFrom utils txtProgressBar setTxtProgressBar
 get_fan_wishlist <- function(username) {
   html <- read_html(paste0("http://bandcamp.com/", username, "/wishlist"))
 
@@ -71,17 +78,21 @@ get_fan_wishlist <- function(username) {
 
   batches_done <- 1
   pb <- txtProgressBar(
-    max=ceiling(pagedata$wishlist_data$item_count / batch_size),
-    initial=batches_done,
-    style=3
+    max = ceiling(pagedata$wishlist_data$item_count / batch_size),
+    initial = batches_done,
+    style = 3
   )
 
   more_available <- !pagedata$collection_data$small_wishlist
-  while(more_available) {
+  while (more_available) {
     req <- POST(
       "http://bandcamp.com/api/fancollection/1/wishlist_items",
-      body=list(fan_id=fan_id, older_than_token=last_token, count=batch_size),
-      encode="json"
+      body = list(
+        fan_id = fan_id,
+        older_than_token = last_token,
+        count = batch_size
+      ),
+      encode = "json"
     )
 
     data <- content(req, "parsed")

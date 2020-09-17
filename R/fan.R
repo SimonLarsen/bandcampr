@@ -1,5 +1,7 @@
 #' Get data for a fan account
 #'
+#' @param username Username of the fan account
+#'
 #' @export
 #' @importFrom xml2 read_html
 #' @importFrom rvest "%>%" html_node html_attr
