@@ -7,7 +7,7 @@
 #' @importFrom rvest "%>%" html_node html_attr
 #' @importFrom jsonlite fromJSON
 get_fan_info <- function(username) {
-  html <- read_html(paste0("http://bandcamp.com/", username))
+  html <- read_html(paste0("https://bandcamp.com/", username))
 
   pagedata <- html %>%
     html_node("#pagedata") %>%
@@ -28,7 +28,7 @@ get_fan_info <- function(username) {
 #' @importFrom httr POST content
 #' @importFrom utils txtProgressBar setTxtProgressBar
 get_fan_collection <- function(username) {
-  html <- read_html(paste0("http://bandcamp.com/", username))
+  html <- read_html(paste0("https://bandcamp.com/", username))
 
   pagedata <- html %>%
     html_node("#pagedata") %>%
@@ -52,7 +52,7 @@ get_fan_collection <- function(username) {
   more_available <- hidden_items > 0
   while (more_available) {
     req <- POST(
-      "http://bandcamp.com/api/fancollection/1/collection_items",
+      "https://bandcamp.com/api/fancollection/1/collection_items",
       body = list(
         fan_id = fan_id,
         older_than_token = last_token,
@@ -83,7 +83,7 @@ get_fan_collection <- function(username) {
 #' @importFrom httr POST content
 #' @importFrom utils txtProgressBar setTxtProgressBar
 get_fan_wishlist <- function(username) {
-  html <- read_html(paste0("http://bandcamp.com/", username, "/wishlist"))
+  html <- read_html(paste0("https://bandcamp.com/", username, "/wishlist"))
 
   pagedata <- html %>%
     html_node("#pagedata") %>%
@@ -107,7 +107,7 @@ get_fan_wishlist <- function(username) {
   more_available <- hidden_items > 0
   while (more_available) {
     req <- POST(
-      "http://bandcamp.com/api/fancollection/1/wishlist_items",
+      "https://bandcamp.com/api/fancollection/1/wishlist_items",
       body = list(
         fan_id = fan_id,
         older_than_token = last_token,
@@ -138,7 +138,7 @@ get_fan_wishlist <- function(username) {
 #' @importFrom httr POST content
 #' @importFrom utils txtProgressBar setTxtProgressBar
 get_fan_followers <- function(username) {
-  html <- read_html(paste0("http://bandcamp.com/", username, "/wishlist"))
+  html <- read_html(paste0("https://bandcamp.com/", username, "/wishlist"))
 
   pagedata <- html %>%
     html_node("#pagedata") %>%
@@ -162,7 +162,7 @@ get_fan_followers <- function(username) {
   more_available <- hidden_items > 0
   while (more_available) {
     req <- POST(
-      "http://bandcamp.com/api/fancollection/1/followers",
+      "https://bandcamp.com/api/fancollection/1/followers",
       body = list(
         fan_id = fan_id,
         older_than_token = last_token,
