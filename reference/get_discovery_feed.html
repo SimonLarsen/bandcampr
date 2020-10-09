@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • bandcampr</title>
+<title>Get discovery items. — get_discovery_feed • bandcampr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,7 +42,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Get discovery items. — get_discovery_feed" />
+<meta property="og:description" content="Get discovery items." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -63,7 +64,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -110,78 +111,74 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Get discovery items.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/SimonLarsen/bandcampr/blob/master/R/discover.R'><code>R/discover.R</code></a></small>
+    <div class="hidden name"><code>get_discovery_feed.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Get discovery items.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>get_discovery_feed</span>(
+  <span class='kw'>page</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>feed</span> <span class='kw'>=</span> <span class='st'>"top"</span>,
+  <span class='kw'>week</span> <span class='kw'>=</span> <span class='st'>"this.week"</span>,
+  <span class='kw'>genre</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>subgenre</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>format</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>location</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+)</pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="get_album_info.html">get_album_info()</a></code> </p>
-        </td>
-        <td><p>Get album information</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_discovery_feed.html">get_discovery_feed()</a></code> </p>
-        </td>
-        <td><p>Get discovery items.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_fan_collection.html">get_fan_collection()</a></code> </p>
-        </td>
-        <td><p>Get data for all items in fan collection</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_fan_followers.html">get_fan_followers()</a></code> </p>
-        </td>
-        <td><p>Get data for all fan followers</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_fan_info.html">get_fan_info()</a></code> </p>
-        </td>
-        <td><p>Get data for a fan account</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_fan_wishlist.html">get_fan_wishlist()</a></code> </p>
-        </td>
-        <td><p>Get data for all items in fan wishlist</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_sales_feed.html">get_sales_feed()</a></code> </p>
-        </td>
-        <td><p>Get currently selling items.</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>page</th>
+      <td><p>Page to get. 0 is first page.</p></td>
+    </tr>
+    <tr>
+      <th>feed</th>
+      <td><p>Feed category. One of <code>"top"</code> (best-selling), <code>"new"</code>
+(new arrivals) or <code>"rec"</code> (artist-recommended).</p></td>
+    </tr>
+    <tr>
+      <th>week</th>
+      <td><p>Week to get feed for. Must be one of <code>"today"</code>,
+<code>"this.week"</code> or a numeric week number.</p></td>
+    </tr>
+    <tr>
+      <th>genre</th>
+      <td><p>Filter on genre e.g. <code>"jazz"</code>.
+See Bandcamp front page for options.</p></td>
+    </tr>
+    <tr>
+      <th>subgenre</th>
+      <td><p>Filter on subgenre e.g. <code>"bebop"</code>.
+See Bandcamp front page for options.</p></td>
+    </tr>
+    <tr>
+      <th>format</th>
+      <td><p>Filter on release format.
+Must be one of <code>"digital"</code>, <code>"vinyl"</code>, <code>"cd"</code> or <code>"cassette"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>location</th>
+      <td><p>Filter on location e.g. <code>"paris"</code>.
+See Bandcamp front page for options.</p></td>
+    </tr>
     </table>
-  </div>
 
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#arguments">Arguments</a></li>
     </ul>
+
   </div>
 </div>
 
