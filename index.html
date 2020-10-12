@@ -85,6 +85,30 @@
 <p>Install the latest development version of bandcampr using devtools:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">remotes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/remotes/man/install_github.html">install_github</a></span>(<span class="st">"SimonLarsen/bandcampr"</span>)</a></code></pre></div>
 </div>
+<div id="example-usage" class="section level2">
+<h2 class="hasAnchor">
+<a href="#example-usage" class="anchor"></a>Example usage</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(bandcampr)</a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</a>
+<a class="sourceLine" id="cb2-3" title="3"></a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="co"># Get collection for user SimonLarsen</span></a>
+<a class="sourceLine" id="cb2-5" title="5">collection &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_fan_collection.html">get_fan_collection</a></span>(<span class="st">"SimonLarsen"</span>)</a>
+<a class="sourceLine" id="cb2-6" title="6">album_urls &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(collection, <span class="st">"[["</span>, <span class="st">"item_url"</span>)</a>
+<a class="sourceLine" id="cb2-7" title="7"></a>
+<a class="sourceLine" id="cb2-8" title="8"><span class="co"># Get info for 20 most recent purchases</span></a>
+<a class="sourceLine" id="cb2-9" title="9">album_infos &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(album_urls, <span class="dv">20</span>), get_album_info)</a>
+<a class="sourceLine" id="cb2-10" title="10"></a>
+<a class="sourceLine" id="cb2-11" title="11"><span class="co"># Get non-location (capitalized) tags occuring more than once</span></a>
+<a class="sourceLine" id="cb2-12" title="12">tags &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(album_infos, <span class="st">"[["</span>, <span class="st">"keywords"</span>))</a>
+<a class="sourceLine" id="cb2-13" title="13">repeated_tags &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/which.html">which</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/table.html">table</a></span>(tags) <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb2-14" title="14">tags &lt;-<span class="st"> </span>tags[tags <span class="op">%in%</span><span class="st"> </span>repeated_tags <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span>(<span class="st">"[A-Z]"</span>, tags)]</a>
+<a class="sourceLine" id="cb2-15" title="15"></a>
+<a class="sourceLine" id="cb2-16" title="16"><span class="co"># Plot counts as bar plot</span></a>
+<a class="sourceLine" id="cb2-17" title="17"><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="dt">mapping=</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(tags)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb2-18" title="18"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb2-19" title="19"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">axis.text.x=</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="dt">angle=</span><span class="dv">45</span>, <span class="dt">hjust=</span><span class="dv">1</span>))</a></code></pre></div>
+<p><img src="reference/figures/tags_barplot.png"></p>
+</div>
 </div>
   </div>
 
