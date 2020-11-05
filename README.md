@@ -20,7 +20,7 @@ library(ggplot2)
 
 # Get collection for user SimonLarsen
 collection <- get_fan_collection("SimonLarsen")
-album_urls <- lapply(collection, "[[", "item_url")
+album_urls <- sapply(collection, "[[", "item_url")
 
 # Get info for 20 most recent purchases
 album_infos <- lapply(head(album_urls, 20), get_album_info)
